@@ -1,0 +1,37 @@
+# FPGA build outputs
+/ffpga/build/
+/ffpga/obj_dir/
+/ffpga/sim/obj_dir/
+
+# Generated bitstreams and reports
+*.bin
+*.edf
+*.vcd
+*.log
+*.d
+*.o
+*.a
+*.mk
+
+# Python bytecode and caches
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Editor / OS clutter
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Keep source and project files tracked
+!/*.ffpga
+!/io_map.pcf
+!/Makefile
+!/shrike.mk
+!/ffpga/src/
+!/ffpga/sim/
+!/shrike_gen/
