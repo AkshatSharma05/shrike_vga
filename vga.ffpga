@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GPDProject version="40" oldestCompatibleVersion="32" GPDVersion="6.53.003" lastChange="17 Jul 2026 00:00:00" projectChecksumState="0" projectChecksum="00000000">
+<GPDProject version="40" oldestCompatibleVersion="32" GPDVersion="6.53.003" lastChange="18 Jul 2026 00:00:00" projectChecksumState="0" projectChecksum="00000000">
     <Metadata>
         <LegalNotice>Generated with Vulcan's Shrike Gen. MIT Licensed. No warranties!</LegalNotice>
     </Metadata>
@@ -43,7 +43,8 @@
             <scr>
                 <module filename="blink.v"/>
                 <module filename="freq_div.v"/>
-                <module filename="main.v"/>
+                <module filename="top.v"/>
+                <module filename="vga_timing.v"/>
             </scr>
         </modules>
         <io-spec-tool>
@@ -93,7 +94,7 @@
     </fpga-data>
     <projectData>
         <specs>
-            <lastModify lastModifyValue="17.07.2026 00:00:00"/>
+            <lastModify lastModifyValue="18.07.2026 00:00:00"/>
             <vddSpecs vddMin="1.05" vddTyp="1.1" vddMax="1.15"/>
             <vdd2Specs vdd2Min="1.71" vdd2Typ="2.5" vdd2Max="3.465"/>
             <tempSpecs tempMin="-40" tempTyp="30" tempMax="85"/>
