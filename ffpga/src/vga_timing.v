@@ -79,7 +79,7 @@ module vga_timing(
         end
     end
 
-    assign video_active = (hcount < H_VISIBLE) && (vcount < V_VISIBLE);
+    assign video_active = (hcount <= H_VISIBLE) && (vcount <= V_VISIBLE);
 
     assign hsync = ~((hcount >= H_VISIBLE + H_FRONT) && (hcount <  H_VISIBLE + H_FRONT + H_SYNC));
     assign vsync = ~((vcount >= V_VISIBLE + V_FRONT) && (vcount < V_VISIBLE + V_FRONT + V_SYNC));

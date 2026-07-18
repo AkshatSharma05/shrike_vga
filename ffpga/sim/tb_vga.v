@@ -1,39 +1,95 @@
-`timescale 1ns / 1ps // one simulation time unit is 1 ns with 1 ps precision in simulator
+`timescale 1ns/1ps
 
 module tb_vga;
 
-reg clk = 0; //reg because tb is driving it
-reg rst = 1;
+    reg clk = 0;
+    reg rst = 0;
 
-wire LED;  //wire because dut will drive it 
-wire LED_en;
-wire clk_en;
+    wire tick_25MHZ;
 
-vga dut (
-    .clk(clk),
-    .rst(rst),
-    .LED(LED),
-    .LED_en(LED_en),
-    .clk_en(clk_en)
-);
+    wire [9:0] hcount;
+    wire [9:0] vcount;
 
-always #5 clk = ~clk; // this defines a 10 ns period with 50% duty cycle periodic clock signal
+    wire hsync;
+    wire vsync;
+    wire video_active;
+    wire frame_start;
+    wire line_start;
 
-initial begin
-    $display("Simulation started");
-    $dumpfile("wave.vcd");
-    $dumpvars(0, tb_vga);
+    initial 
+        clk = 1'b0;
 
-    // nRST is active-low: press reset, then release it.
-    rst = 1'b0;
-    #20;
-    rst = 1'b1;
+    always #10 clk = ~clk; //20 ns period ->    --__--__
+    //hence tick_25Mhz occurs every 40ns 
 
-    #500;
+    //number of pixel ticks for one VGA frame -> 800*525 = 420000
+                                                      // = 420000 * 40 ns = 16.8 ms  
 
-    $display("Simulation ended");
+    freq_div u_div(
+        .clk(clk),
+        .rst(rst),
+        .tick_25MHZ(tick_25MHZ)
+    );
 
-    $finish;
-end
+    vga_timing uut(
+        .clk(clk),
+        .rst(rst),
+        .tick_25MHZ(tick_25MHZ),
+
+        .hcount(hcount),
+        .vcount(vcount),
+
+        .hsync(hsync),
+        .vsync(vsync),
+        .video_active(video_active),
+
+        .frame_start(frame_start),
+        .line_start(line_start)
+    );
+
+    initial begin
+
+        rst = 0;
+
+        #100;
+
+        rst = 1;
+
+    end
+
+    initial begin
+        $dumpfile("wave.vcd");
+        $dumpvars(0, tb_vga);
+    end
+
+    always @(posedge clk) begin
+
+        if (tick_25MHZ) begin
+
+            if (hcount >= 800) begin
+                $display("ERROR: hcount overflow (%0d)", hcount);
+                $finish;
+            end
+
+            if (vcount >= 525) begin
+                $display("ERROR: vcount overflow (%0d)", vcount);
+                $finish;
+            end
+
+        end
+
+    end
+
+    initial begin
+        #(800 * 40 * 3)
+
+        $display("-----------------------------");
+        $display("Simulation Finished");
+        $display("hcount = %0d", hcount);
+        $display("vcount = %0d", vcount);
+        $display("-----------------------------");
+
+        $finish;
+    end
 
 endmodule
