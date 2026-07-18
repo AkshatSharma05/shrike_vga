@@ -14,6 +14,18 @@
   wire tick_25MHZ;
   wire reset = rst;
 
+  wire [9:0] hcount;
+  wire [9:0] vcount;
+  wire hsync;
+  wire vsync;
+  wire video_active;
+  wire frame_start;
+  wire line_start;
+
+  wire r; 
+  wire g;
+  wire b;
+
   freq_div u_freq_div (
     .clk       (clk),
     .rst       (reset),
@@ -26,14 +38,6 @@
     .rst         (reset),
     .LED         (LED)
   );
-
-  wire [9:0] hcount;
-  wire [9:0] vcount;
-  wire hsync;
-  wire vsync;
-  wire video_active;
-  wire frame_start;
-  wire line_start;
 
   vga_timing u_vga_timing (
       .clk(clk),
@@ -49,6 +53,23 @@
 
       .frame_start(frame_start),
       .line_start(line_start)
+  );
+
+  vga_renderer u_vga_renderer (
+      .clk(clk),
+      .rst(reset),
+      .tick_25MHZ(tick_25MHZ),
+
+      .video_active(video_active),
+      .line_start(line_start),
+      .frame_start(frame_start),
+
+      .hcount(hcount),
+      .vcount(vcount),
+
+      .r(r),
+      .g(g),
+      .b(b)
   );
 
   assign LED_en = 1'b1;

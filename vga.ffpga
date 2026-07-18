@@ -44,6 +44,7 @@
                 <module filename="blink.v"/>
                 <module filename="freq_div.v"/>
                 <module filename="top.v"/>
+                <module filename="vga_renderer.v"/>
                 <module filename="vga_timing.v"/>
             </scr>
         </modules>
