@@ -23,5 +23,21 @@
 set_io clk     CLK         # external clock → EFLX_CLK West Input=0
 set_io LED     PIN_7       # GPIO16_OUT [PIN 7]
 set_io LED_en  PIN_7_OE    # GPIO16_OE  [PIN 7]  — drive HIGH to enable output
+
+set_io r     PIN_8       # GPIO17_OUT [PIN 8]
+set_io r_en  PIN_8_OE       # GPIO17_OUT [PIN 8]
+
+set_io g     PIN_9       # GPIO18_OUT [PIN 9]
+set_io g_en  PIN_9_OE       # GPIO18_OUT [PIN 9]
+
+set_io b     PIN_13       # GPIO0_OUT [PIN 13]
+set_io b_en  PIN_13_OE       # GPIO0_OUT [PIN 13]
+
+set_io hsync     PIN_14       # GPIO1_OUT [PIN 14]
+set_io hsync_en  PIN_14_OE       # GPIO1_OUT [PIN 14]
+
+set_io vsync     PIN_15       # GPIO2_OUT [PIN 15]
+set_io vsync_en  PIN_15_OE       # GPIO2_OUT [PIN 15]
+
 set_io clk_en  OSC_EN      # Oscillator enable
 set_io rst     nRST        # Reset Signal

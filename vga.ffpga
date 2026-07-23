@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GPDProject version="40" oldestCompatibleVersion="32" GPDVersion="6.53.003" lastChange="18 Jul 2026 00:00:00" projectChecksumState="0" projectChecksum="00000000">
+<GPDProject version="40" oldestCompatibleVersion="32" GPDVersion="6.53.003" lastChange="24 Jul 2026 00:00:00" projectChecksumState="0" projectChecksum="00000000">
     <Metadata>
         <LegalNotice>Generated with Vulcan's Shrike Gen. MIT Licensed. No warranties!</LegalNotice>
     </Metadata>
@@ -42,6 +42,7 @@
         <modules>
             <scr>
                 <module filename="blink.v"/>
+                <module filename="draw_rect.v"/>
                 <module filename="freq_div.v"/>
                 <module filename="top.v"/>
                 <module filename="vga_renderer.v"/>
@@ -53,8 +54,38 @@
                 <record id="CLK_t[0:0]_W_in0">
                     <port-name>clk</port-name>
                 </record>
+                <record id="IOB_t[0:0]_xy[0:6]_out0">
+                    <port-name>b</port-name>
+                </record>
+                <record id="IOB_t[0:0]_xy[0:6]_out1">
+                    <port-name>b_en</port-name>
+                </record>
+                <record id="IOB_t[0:0]_xy[0:7]_out0">
+                    <port-name>hsync</port-name>
+                </record>
+                <record id="IOB_t[0:0]_xy[0:7]_out1">
+                    <port-name>hsync_en</port-name>
+                </record>
+                <record id="IOB_t[0:0]_xy[0:8]_out0">
+                    <port-name>vsync</port-name>
+                </record>
+                <record id="IOB_t[0:0]_xy[0:8]_out1">
+                    <port-name>vsync_en</port-name>
+                </record>
                 <record id="IOB_t[0:0]_xy[0:25]_out0">
                     <port-name>clk_en</port-name>
+                </record>
+                <record id="IOB_t[0:0]_xy[31:4]_out0">
+                    <port-name>g</port-name>
+                </record>
+                <record id="IOB_t[0:0]_xy[31:4]_out1">
+                    <port-name>g_en</port-name>
+                </record>
+                <record id="IOB_t[0:0]_xy[31:5]_out0">
+                    <port-name>r</port-name>
+                </record>
+                <record id="IOB_t[0:0]_xy[31:5]_out1">
+                    <port-name>r_en</port-name>
                 </record>
                 <record id="IOB_t[0:0]_xy[31:6]_out0">
                     <port-name>LED</port-name>
@@ -95,7 +126,7 @@
     </fpga-data>
     <projectData>
         <specs>
-            <lastModify lastModifyValue="18.07.2026 00:00:00"/>
+            <lastModify lastModifyValue="24.07.2026 00:00:00"/>
             <vddSpecs vddMin="1.05" vddTyp="1.1" vddMax="1.15"/>
             <vdd2Specs vdd2Min="1.71" vdd2Typ="2.5" vdd2Max="3.465"/>
             <tempSpecs tempMin="-40" tempTyp="30" tempMax="85"/>
